@@ -37,10 +37,10 @@
                         <ColumnDefinition Width="47*"/>
                         <ColumnDefinition Width="81*"/>
                     </Grid.ColumnDefinitions>
-                    <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="128" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" SelectionChanged="ActionsBox_SelectionChanged" Grid.ColumnSpan="2">
-                        <ListBoxItem Content="Click" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
-                        <ListBoxItem Content="Type" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
-                        <ListBoxItem Content="Wait" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" HorizontalAlignment="Left"/>
+                    <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="128" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" SelectionChanged="ActionsBox_SelectionChanged" Grid.ColumnSpan="2" PreviewMouseMove="ActionsBox_MouseMove">
+                        <ListBoxItem Name="ActionEvent_Click" Content="Click" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
+                        <ListBoxItem Name="ActionEvent_Type" Content="Type" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
+                        <ListBoxItem Name="ActionEvent_Wait" Content="Wait" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" HorizontalAlignment="Left"/>
                         <ToolBarPanel Height="100"/>
                     </ListBox>
                 </Grid>

@@ -23,7 +23,7 @@ namespace AIAAutomation{
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window{
-        private object data;
+        public string automationid;
 
         public MainWindow(){
             //Initialization of main window.
@@ -104,10 +104,20 @@ namespace AIAAutomation{
         {
             ListBox dragSource = null;
             ListBox parent = (ListBox)sender;
+            string buffer = (GetDataFromListBox(parent, e.GetPosition(parent))).GetType().ToString();
+            if(buffer == "System.Windows.Controls.Primitives.ToolBarPanel")
+            {
+                Console.WriteLine("failure");
+                return;
+            }
             dragSource = parent;
-            data = GetDataFromListBox(dragSource, e.GetPosition(parent));
-            Console.WriteLine("captured "+data);
-
+            ListBoxItem bufferitem = new ListBoxItem();
+            bufferitem = (ListBoxItem)(GetDataFromListBox(parent, e.GetPosition(parent)));
+            
+            string stringData = bufferitem.Name;
+            string dataFormat = DataFormats.UnicodeText;
+            DataObject data = new DataObject(dataFormat, stringData);
+            //Console.WriteLine("captured "+ bufferitem.Name);
             //If the data isn't empty, then we'll capture the data as a global element, and execute
             //our dragging copy+move action.
             //TODO: Reset details of action control once copied but after the action has been added.
@@ -115,10 +125,16 @@ namespace AIAAutomation{
             {
                 DragDrop.DoDragDrop(parent, data, DragDropEffects.Copy | DragDropEffects.Move);
             }
+
+            }
+
+        private void ActionsBox_MouseMove(object sender, MouseEventArgs e)
+        {
+                //Console.WriteLine("dragging with "+IsDragging);
         }
 
-        #region GetDataFromListBox(ListBox,Point)
-        private static object GetDataFromListBox(ListBox source, Point point)
+            #region GetDataFromListBox(ListBox,Point)
+            private static object GetDataFromListBox(ListBox source, Point point)
         {
             UIElement element = source.InputHitTest(point) as UIElement;
             if(element != null)
@@ -144,16 +160,33 @@ namespace AIAAutomation{
             return null;
         }
         #endregion
+
         private void ActionsBox_Drop(object sender, DragEventArgs e)
         {
-            Console.WriteLine("released " + data);
-            ListBoxItem newlistitem = new ListBoxItem();
+            string content = (string)e.Data.GetData(DataFormats.StringFormat);
+            //ListBoxItem newlistitem = new ListBoxItem();
             object newdata = new object();
-            
-            newlistitem.Content = newdata;
-            //ActionsBox.Items.Remove(data);
-            TimelineBox.Items.Add(newlistitem);
+            //Console.WriteLine("released " + content);
+            if (content == "ActionEvent_Click")
+            {
+                var ClickWindow = new ClickWindow();
+                ClickWindow.Show();
+                ClickWindow.clickmodal_submitbutton.Content = "Add";
+            }
+            else if(content == "ActionEvent_Type")
+            {
+                Console.WriteLine("Generate Type Functionality");
+                //newlistitem.Content = "TYPE";
+            }
+            else if(content=="ActionEvent_Wait")
+            {
+                Console.WriteLine("Generate Wait Functionality");
+                //newlistitem.Content = "WAIT";
+            }
+            //TimelineBox.Items.Add(newlistitem);
         }
+
+        // Import system
         private void menu_Import(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -168,6 +201,8 @@ namespace AIAAutomation{
                 ActionsBox.Items.Add(loadedfile);
             }
         }
+
+        // Export system
         private void menu_Export(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
