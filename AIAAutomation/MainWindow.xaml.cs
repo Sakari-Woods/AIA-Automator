@@ -18,7 +18,7 @@ using System.Windows.Automation;
 using System.Diagnostics;
 using Condition = System.Windows.Automation.Condition;
 
-namespace WpfApp1{
+namespace AIAAutomation{
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
