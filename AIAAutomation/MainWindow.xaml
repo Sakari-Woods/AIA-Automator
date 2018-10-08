@@ -50,12 +50,13 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <ListBox x:Name="TimelineBox" Margin="312,34,290,10" Background="DarkGray" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop">
+        <ListBox x:Name="TimelineBox" Margin="299,34,10,10" Background="DarkGray" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
+        <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="100" Margin="132,265,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

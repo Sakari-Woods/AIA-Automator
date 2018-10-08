@@ -30,7 +30,11 @@ namespace AIAAutomation{
             InitializeComponent();
         }
 
-        //Actions when typing into the hook process window.
+        #region HookImplementation
+        /*Hook Implementation
+        Leave as is, this will be switched out to leave in the drag-drop system, and
+        refactor the automationids into a hashmap to be referenced by a drop-down at
+        any time. This grabs AutomationIds when typing into the hook process window.*/
         private void textBox_TextChanged(object sender, TextChangedEventArgs e){
             //text has changed inside.
         }
@@ -70,7 +74,6 @@ namespace AIAAutomation{
             //Element control inside of list was clicked.
             //Descriptor.Text = elebox.Content.ToString();
         }
-
         //Hook button has been clicked, so fetch the entered process ID.
         private void TestClick(object sender, RoutedEventArgs e){
             Console.WriteLine("Fetching "+processInput.Text);
@@ -98,8 +101,9 @@ namespace AIAAutomation{
                 }
             }
        }
+
         //Actions to perform when clicking on the ActionsBox.
-        //TODO: Remove this call, or make it expand the action clicked in order to f ill out details.
+        //TODO: Remove this call, or make it expand the action clicked in order to fill out details.
         private void ActionsBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ListBox dragSource = null;
@@ -133,7 +137,6 @@ namespace AIAAutomation{
                 //Console.WriteLine("dragging with "+IsDragging);
         }
 
-            #region GetDataFromListBox(ListBox,Point)
             private static object GetDataFromListBox(ListBox source, Point point)
         {
             UIElement element = source.InputHitTest(point) as UIElement;
@@ -169,9 +172,14 @@ namespace AIAAutomation{
             //Console.WriteLine("released " + content);
             if (content == "ActionEvent_Click")
             {
-                var ClickWindow = new ClickWindow();
-                ClickWindow.Show();
-                ClickWindow.clickmodal_submitbutton.Content = "Add";
+
+                //RESEARCH PANEL IMPLEMENTATION INSTEAD OF GROUPBOX
+                Console.WriteLine("Generate Click Functionality");
+                GroupBox clickitem = new GroupBox();
+                clickitem.Height = 100;
+                clickitem.Content = new TextBlock() { Text = "Click on control", Height = 20,HorizontalAlignment = System.Windows.HorizontalAlignment.Left,VerticalAlignment = System.Windows.VerticalAlignment.Top };
+                
+                TimelineBox.Items.Add(clickitem);
             }
             else if(content == "ActionEvent_Type")
             {
@@ -186,7 +194,7 @@ namespace AIAAutomation{
             //TimelineBox.Items.Add(newlistitem);
         }
 
-        // Import system
+        // Function that allows importing of automation files.
         private void menu_Import(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -202,7 +210,7 @@ namespace AIAAutomation{
             }
         }
 
-        // Export system
+        // Function that allows exporting of automation files.
         private void menu_Export(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -221,6 +229,8 @@ namespace AIAAutomation{
                 ActionsBox.Items.Add(loadedfile);
             }
         }
+
+        // Deprecated?
         private void ActionsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Selection change for actionsbox.
