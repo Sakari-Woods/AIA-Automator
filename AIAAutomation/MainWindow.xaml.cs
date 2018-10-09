@@ -17,24 +17,27 @@ using Microsoft.Win32;
 using System.Windows.Automation;
 using System.Diagnostics;
 using Condition = System.Windows.Automation.Condition;
+//This imports all of the libraries that we need.
+//There are also some .dll files that are utilized inside our project directory
+//that are needed for automation.
 
 namespace AIAAutomation{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
+    //Our main class, this initializes our application window.
     public partial class MainWindow : Window{
-        public string automationid;
+    public string automationid;
 
         public MainWindow(){
+
             //Initialization of main window.
             InitializeComponent();
         }
 
         #region HookImplementation
         /*Hook Implementation
-        Leave as is, this will be switched out to leave in the drag-drop system, and
+        Leave as is, this will be switched out for a cleaner drag-and-drop system, and
         refactor the automationids into a hashmap to be referenced by a drop-down at
-        any time. This grabs AutomationIds when typing into the hook process window.*/
+        any time. This grabs AutomationIds when a program name is typed into the hook process window.*/
         private void textBox_TextChanged(object sender, TextChangedEventArgs e){
             //text has changed inside.
         }
@@ -164,34 +167,49 @@ namespace AIAAutomation{
         }
         #endregion
 
+        //This function runs when we drop an action into our Timeline window.
         private void ActionsBox_Drop(object sender, DragEventArgs e)
         {
+            //Gets the data of the action we dropped so we know what we're dropping.
             string content = (string)e.Data.GetData(DataFormats.StringFormat);
-            //ListBoxItem newlistitem = new ListBoxItem();
-            object newdata = new object();
-            //Console.WriteLine("released " + content);
+
+            //If it's our click action, we create a clickbox item and add it to the timeline.
             if (content == "ActionEvent_Click")
             {
+                StackPanel clickPanel = new StackPanel();
+                TextBlock clickText = new TextBlock();
+                ComboBox clickComboBox = new ComboBox();
+                clickComboBox.Margin = new Thickness(5);
+                //Here we want to call our populate function that grabs the automationIDs
+                //and then add them as items for our selection drop-down.
+                //For now here's three examples to help design formatting.
+                ComboBoxItem clickComboBoxItem1 = new ComboBoxItem();
+                ComboBoxItem clickComboBoxItem2 = new ComboBoxItem();
+                ComboBoxItem clickComboBoxItem3 = new ComboBoxItem();
+                clickComboBoxItem1.Content = "Exit_Button";
+                clickComboBoxItem2.Content = "Minimize_Button";
+                clickComboBoxItem2.Content = "Maximize_Button";
+                clickComboBox.Items.Add(clickComboBoxItem1);
+                clickComboBox.Items.Add(clickComboBoxItem2);
+                clickComboBox.Items.Add(clickComboBoxItem3);
 
-                //RESEARCH PANEL IMPLEMENTATION INSTEAD OF GROUPBOX
+                clickText.Text = "Clicking on ";
+                clickPanel.Children.Add(clickText);
+                clickPanel.Children.Add(clickComboBox);
                 Console.WriteLine("Generate Click Functionality");
-                GroupBox clickitem = new GroupBox();
-                clickitem.Height = 100;
-                clickitem.Content = new TextBlock() { Text = "Click on control", Height = 20,HorizontalAlignment = System.Windows.HorizontalAlignment.Left,VerticalAlignment = System.Windows.VerticalAlignment.Top };
-                
-                TimelineBox.Items.Add(clickitem);
+                TimelineBox.Items.Add(clickPanel);
             }
-            else if(content == "ActionEvent_Type")
+
+            //If it's our type action, we create a typebox item and add it to the timeline.
+            else if (content == "ActionEvent_Type")
             {
                 Console.WriteLine("Generate Type Functionality");
-                //newlistitem.Content = "TYPE";
             }
-            else if(content=="ActionEvent_Wait")
+            //If it's our wait action, we create a wait item and add it to the timeline.
+            else if (content=="ActionEvent_Wait")
             {
                 Console.WriteLine("Generate Wait Functionality");
-                //newlistitem.Content = "WAIT";
             }
-            //TimelineBox.Items.Add(newlistitem);
         }
 
         // Function that allows importing of automation files.
@@ -228,12 +246,6 @@ namespace AIAAutomation{
                 File.WriteAllLines(filename,stringcontents);
                 ActionsBox.Items.Add(loadedfile);
             }
-        }
-
-        // Deprecated?
-        private void ActionsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //Selection change for actionsbox.
         }
     }
 }
