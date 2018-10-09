@@ -1,4 +1,4 @@
 # AIA-Automator
 An automation program designed to provide a free and open-source solution for automation needs. Designed to be used by those without programming experience, and to work on any program that supplies AutomationIDs to the program's built in controls.
 
-If you are interested in contributing, please check the project board <a href="https://github.com/WWU-AI-Association/AIA-Automator/projects/1">here</a>, if you'd like to assign yourself to one of the tasks that needs to get done, <a href="sakariwoods@gmail.com">send me an email</a> and I'll both assign you and help you with resources and understanding.
+Our project board is located <a href="https://github.com/WWU-AI-Association/AIA-Automator/projects/1">here</a>, if you'd like to contribute to the program, <a href="woodss9@wwu.edu">send me an email</a> and I'll give you access to the project, tutorials and a chat channel for better understanding.
