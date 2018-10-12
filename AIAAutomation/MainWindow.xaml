@@ -46,7 +46,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Other" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+            <TabItem Header="Other" HorizontalAlignment="Left" Width="54" Margin="-2,-2,0,2">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

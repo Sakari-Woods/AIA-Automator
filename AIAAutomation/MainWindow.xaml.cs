@@ -1,4 +1,22 @@
-﻿using System;
+﻿/* Artificial Intelligence Association
+ * RPA Automation Project
+ * 
+ * Developed by:
+ * Sakari Woods
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Description: This program is designed to allow easy
+ * automation of any Windows application by collection controls
+ * by their AutomationIDs, and providing an intuitive drag-and-drop
+ * framework for the user to automation their projects, regardless of
+ * programming or scripting experience. Designed to be lightweight and
+ * with integrated dependencies.
+ * */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
