@@ -1,12 +1,10 @@
 ﻿/*
  * 
-<<<<<<< HEAD:AIAAutomation/MainWindow.xaml.cs
  * 
 =======
  * Developed by:
  * Sakari Woods
  * Sam Herr
->>>>>>> 60ccbd1... Actually added name to project:AIA-Automator/AIAAutomation/MainWindow.xaml.cs
  * 
  * 
  * 
