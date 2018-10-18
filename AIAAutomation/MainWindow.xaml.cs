@@ -1,7 +1,6 @@
 ﻿/*
  * 
  * 
-=======
  * Developed by:
  * Sakari Woods
  * Sam Herr
