@@ -1,35 +1,28 @@
-<<<<<<< HEAD
+
 ﻿/* Artificial Intelligence Association
  * RPA Automation Project
  * 
  * Developed by:
  * Sakari Woods
-=======
-﻿/*
+﻿ *
  * 
  * 
  *
  * Developed by:
  * Sakari Woods
  * Sam Herr
->>>>>>> sakari-develop
  * 
  * 
  * 
  * 
  * 
-<<<<<<< HEAD
  * Description: This program is designed to allow easy
  * automation of any Windows application by collection controls
  * by their AutomationIDs, and providing an intuitive drag-and-drop
  * framework for the user to automation their projects, regardless of
  * programming or scripting experience. Designed to be lightweight and
  * with integrated dependencies.
- * */
-
-=======
  */
->>>>>>> sakari-develop
 using System;
 using System.Collections.Generic;
 using System.Linq;
