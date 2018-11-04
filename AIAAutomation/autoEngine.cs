@@ -8,5 +8,12 @@ namespace AIAAutomation
 {
     class autoEngine
     {
+        // Captures process from displayed list and stores the
+        // program in order to automation tasks.
+        public void Display(String target)
+        {
+            Console.WriteLine("Recieved " + target);
+        }
+
     }
 }

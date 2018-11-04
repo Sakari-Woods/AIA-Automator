@@ -10,7 +10,11 @@
 
     <!--Main program window-->
     <Grid Background="LightGray" Margin="0">
-        <DockPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="643*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
 
             <!--Menu file/options/etc system-->
             <Menu Background="White" DockPanel.Dock="Top" Height="18" VerticalAlignment="Top">
@@ -25,19 +29,20 @@
                 <MenuItem Header="_Options" Background="White" BorderBrush="Gray"/>
             </Menu>
         </DockPanel>
-        <Grid Background="#FFE5E5E5">
+        <Grid Background="#FFE5E5E5" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="47*"/>
                 <ColumnDefinition Width="81*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="128" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ActionsBox_MouseMove" Margin="10,35,0,0">
+            <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="95" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ActionsBox_MouseMove" Margin="24,35,0,0">
                 <ListBoxItem Name="ActionEvent_Click" Content="Click" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
                 <ListBoxItem Name="ActionEvent_Type" Content="Type" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
                 <ListBoxItem Name="ActionEvent_Wait" Content="Wait" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" HorizontalAlignment="Left"/>
             </ListBox>
+            <Button x:Name="hookButton" Content="Select Program" HorizontalAlignment="Left" Margin="153,48,0,0" VerticalAlignment="Top" Width="95" Click="hookButton_Click"/>
         </Grid>
 
-        <ListBox x:Name="TimelineBox" Margin="149,34,10,205" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop">
+        <ListBox x:Name="TimelineBox" Margin="0,34,10,205" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop" Visibility="Hidden" Grid.Column="1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>

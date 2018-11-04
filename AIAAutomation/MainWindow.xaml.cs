@@ -49,9 +49,10 @@ using Condition = System.Windows.Automation.Condition;
 namespace AIAAutomation{
 
     //Our main class, this initializes our application window.
-    public partial class MainWindow : Window{
+    public partial class MainWindow  : Window{
     public string automationid;
     public Boolean hasProgram = false;
+    autoEngine aEngine = new autoEngine();
 
         public MainWindow(){
 
@@ -276,6 +277,19 @@ namespace AIAAutomation{
                 File.WriteAllLines(filename,stringcontents);
                 ActionsBox.Items.Add(loadedfile);
             }
+        }
+        
+        // Function that handles finding the program for automation.
+        private void hookButton_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("hookButton::clicked");
+            // Prompt window and populate all processes for selection.
+            processSelection processWindow = new processSelection();
+            processWindow.Show();
+
+            aEngine.Display("testname");
+            //hasProgram = true;
+            //TimelineBox.Visibility = System.Windows.Visibility.Visible;
         }
     }
 }
