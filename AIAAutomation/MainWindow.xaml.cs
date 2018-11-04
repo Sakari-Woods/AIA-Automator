@@ -51,18 +51,19 @@ namespace AIAAutomation{
     //Our main class, this initializes our application window.
     public partial class MainWindow : Window{
     public string automationid;
+    public Boolean hasProgram = false;
 
         public MainWindow(){
 
             //Initialization of main window.
             InitializeComponent();
         }
-
+        
         #region HookImplementation
         /*Hook Implementation
         Leave as is, this will be switched out for a cleaner drag-and-drop system, and
         refactor the automationids into a hashmap to be referenced by a drop-down at
-        any time. This grabs AutomationIds when a program name is typed into the hook process window.*/
+        any time. This grabs AutomationIds when a program name is typed into the hook process window.
         private void textBox_TextChanged(object sender, TextChangedEventArgs e){
             //text has changed inside.
         }
@@ -76,7 +77,7 @@ namespace AIAAutomation{
                 elebox.Content = rootElement.Current.AutomationId;
                 elebox.Name = "elebox";
                 elebox.Click += new System.Windows.RoutedEventHandler(elebox_Click);
-                CollectorBox.Items.Add(elebox);
+                //CollectorBox.Items.Add(elebox);
                 
             }
 
@@ -104,8 +105,9 @@ namespace AIAAutomation{
         }
         //Hook button has been clicked, so fetch the entered process ID.
         private void TestClick(object sender, RoutedEventArgs e){
-            Console.WriteLine("Fetching "+processInput.Text);
-            var allProcess = Process.GetProcessesByName(processInput.Text);
+            //Console.WriteLine("Fetching "+processInput.Text);
+            //var allProcess = Process.GetProcessesByName(processInput.Text);
+            
             foreach (var process in allProcess)
             {
                 try
@@ -132,6 +134,7 @@ namespace AIAAutomation{
 
         //Actions to perform when clicking on the ActionsBox.
         //TODO: Remove this call, or make it expand the action clicked in order to fill out details.
+        */
         private void ActionsBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ListBox dragSource = null;
@@ -159,6 +162,7 @@ namespace AIAAutomation{
             }
 
             }
+            
 
         private void ActionsBox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -190,6 +194,7 @@ namespace AIAAutomation{
             }
             return null;
         }
+        
         #endregion
 
         //This function runs when we drop an action into our Timeline window.

@@ -1,6 +1,11 @@
 @echo off
 echo This script grabs any changes you've made to the repo, asks for your branch name, and saves your updates to GitHub.
 pause
+set curloc=%cd%
+echo we are located at %curloc%
+pause
+chdir C:\Program Files\Git\cmd
+echo %cd%
 git status
 Echo Are you on the correct branch?
 set /p correct="y/n:"
