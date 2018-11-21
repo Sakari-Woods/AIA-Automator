@@ -4,12 +4,6 @@
  * 
  * Developed by:
  * Sakari Woods
-﻿ *
- * 
- * 
- *
- * Developed by:
- * Sakari Woods
  * Sam Herr
  * 
  * 
@@ -27,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
@@ -278,7 +273,6 @@ namespace AIAAutomation{
                 ActionsBox.Items.Add(loadedfile);
             }
         }
-        
         // Function that handles finding the program for automation.
         private void hookButton_Click(object sender, RoutedEventArgs e)
         {
@@ -286,10 +280,20 @@ namespace AIAAutomation{
             // Prompt window and populate all processes for selection.
             processSelection processWindow = new processSelection();
             processWindow.Show();
+            Console.WriteLine("Does this get called?");
 
-            aEngine.Display("testname");
-            //hasProgram = true;
-            //TimelineBox.Visibility = System.Windows.Visibility.Visible;
+            Thread programThread = new Thread(processWindow.Start());
+            //ProcessThread programThread = new ProcessThread(processSelection.start(5));
+            Thread.CurrentThread.Suspend();
+
+            // This continues to run even when it's waiting for input from processWindow.
+            // We can call processWindow on a separate thread and halt the current one to fix this.
+
+            if(processWindow.clickedName != null)
+            {
+                hasProgram = true;
+                TimelineBox.Visibility = System.Windows.Visibility.Visible;
+            }
         }
     }
 }

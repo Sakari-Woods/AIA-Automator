@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
         Title="AIA Automator" Height="450" Width="800"
-        WindowState="Maximized">
+        >
 
     <!--Main program window-->
     <Grid Background="LightGray" Margin="0">

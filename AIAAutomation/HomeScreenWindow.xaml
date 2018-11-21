@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="HomeScreenWindow" Height="177" Width="395">
+        Title="HomeScreenWindow" Height="294" Width="518">
     <Grid Margin="0,0,-8,-21" HorizontalAlignment="Left" Width="395" Height="167" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="302*"/>
             <ColumnDefinition Width="93*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="programChoiceLabel" Content="Please pick one:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0.192"/>
-        <Button x:Name="newButton" Content="Create New Automation" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Width="146" Height="30"/>
-        <Button x:Name="existingButton" Content="Open Exisitng Automation" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="146" Height="30"/>
+        <Label x:Name="programChoiceLabel" Content="Welcome message for Automation system." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0.192"/>
+        <Button x:Name="existingButton" Content="Button 2" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="146" Height="30"/>
 
     </Grid>
 </Window>
