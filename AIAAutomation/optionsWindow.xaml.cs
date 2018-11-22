@@ -15,39 +15,34 @@ using System.Windows.Shapes;
 namespace AIAAutomation
 {
     /// <summary>
-    /// Interaction logic for HomeScreenWindow.xaml
+    /// Interaction logic for optionsWindow.xaml
     /// </summary>
-
-    public partial class HomeScreenWindow : Window
+    public partial class optionsWindow : Window
     {
-        private Window main;
+        public Window main;
 
-        public HomeScreenWindow()
+        public optionsWindow()
         {
             InitializeComponent();
         }
+
         public void setMain(Window window)
         {
-            // Grabs the main window from the constructor, so we can pass it through our
-            // building wizard and update values within autoEngine.
             main = window;
         }
 
-        private void loadExisting_Click(object sender, RoutedEventArgs e)
+        private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Console.WriteLine("Clicked on next");
         }
-
-        private void createNew_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("Clicked on back");
             processSelection processWindow = new processSelection();
-            this.Topmost = false;
-            processWindow.Show();
-            
-            // We pass the main window from MainWindow into processSelection.
             processWindow.setMain(main);
-
+            processWindow.ShowDialog();
             this.Close();
         }
+
     }
 }

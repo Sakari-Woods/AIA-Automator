@@ -24,17 +24,20 @@ namespace AIAAutomation
     public partial class processSelection : Window
     {
         // String is made public so we can reference it from the MainWindow.
-        public string clickedName;
+        private Window main;
+        private string clickedName;
 
         public processSelection()
         {
             InitializeComponent();
             processIndex();
         }
-        public static void Start()
+
+        public void setMain(Window window)
         {
-            Console.WriteLine("Thread generated");
+            main = window;
         }
+
         private void processIndex()
         {
             Console.WriteLine("Indexing processes.");
@@ -76,6 +79,13 @@ namespace AIAAutomation
             if(clickedName != null)
             {
                 Console.WriteLine("Found " + clickedName + ", proceeding");
+                optionsWindow options = new optionsWindow();
+                options.ShowDialog();
+                options.setMain(main);
+                // Pass our values, and move into our options dialogue window.
+               // optionsWindow.setMain(main);
+                // Record the found program and send it to our editor.
+                // Call options wizard screen here.
                 this.Close();
             }
             else
@@ -87,6 +97,13 @@ namespace AIAAutomation
         private void cancelProcess_Click(object sender, RoutedEventArgs e)
         {
             clickedName = null;
+            // Create HomeScreenWindow again because maybe the user accidentally clicked Cancel,
+            // or wanted to load an existing script.
+            HomeScreenWindow homeScreen = new HomeScreenWindow();
+            homeScreen.Show();
+            // Sets the MainWindow to be the main of HomeScreenWindow, important because if we don't do this
+            // we'll lose track of our updating value hand-off and won't be able to call our autoEngine.
+            homeScreen.setMain(main);
             this.Close();
         }
     }

@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="Select Process" Height="450" Width="533"
+        Title="Select Process" Height="500" Width="500"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
-    <Grid HorizontalAlignment="Left" Width="524">
-        <ListBox x:Name="processList" HorizontalAlignment="Left" Height="363" Margin="30,30,0,0" VerticalAlignment="Top" Width="464" AllowDrop="True"/>
-        <Button x:Name="selectProcess" Content="Select" HorizontalAlignment="Left" Margin="30,406,0,0" VerticalAlignment="Top" Width="75" Click="selectProcess_Click"/>
-        <Button x:Name="cancelProcess" Content="Cancel" HorizontalAlignment="Left" Margin="419,406,0,0" VerticalAlignment="Top" Width="75" Click="cancelProcess_Click"/>
+    <Grid HorizontalAlignment="Left" Width="490">
+        <ListBox x:Name="processList" Height="342" Margin="30,30,0,0" VerticalAlignment="Top" AllowDrop="True" HorizontalAlignment="Left" Width="439"/>
+        <Button x:Name="selectProcess" Content="Next" HorizontalAlignment="Right" Margin="0,450,20,0" VerticalAlignment="Top" Width="75" Click="selectProcess_Click"/>
+        <Button x:Name="cancelProcess" Content="Cancel" HorizontalAlignment="Right" Margin="0,450,110,0" VerticalAlignment="Top" Width="75" Click="cancelProcess_Click"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Please select the program for automation" VerticalAlignment="Top" Width="439" Margin="30,377,21,0" FontWeight="Black" TextAlignment="Center" FontSize="18"/>
 
     </Grid>
 </Window>

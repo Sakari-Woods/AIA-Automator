@@ -33,10 +33,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
-using System.Windows.Automation;
-using System.Diagnostics;
-using Condition = System.Windows.Automation.Condition;
 //This imports all of the libraries that we need.
 //There are also some .dll files that are utilized inside our project directory
 //that are needed for automation.
@@ -45,92 +41,19 @@ namespace AIAAutomation{
 
     //Our main class, this initializes our application window.
     public partial class MainWindow  : Window{
-    public string automationid;
-    public Boolean hasProgram = false;
-    autoEngine aEngine = new autoEngine();
+
+        autoEngine ae = new autoEngine();
 
         public MainWindow(){
 
             //Initialization of main window.
             InitializeComponent();
-        }
-        
-        #region HookImplementation
-        /*Hook Implementation
-        Leave as is, this will be switched out for a cleaner drag-and-drop system, and
-        refactor the automationids into a hashmap to be referenced by a drop-down at
-        any time. This grabs AutomationIds when a program name is typed into the hook process window.
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e){
-            //text has changed inside.
-        }
-        private void WalkEnabledElements(AutomationElement rootElement)
-        {
-            //Only add Automation controls if their length is more than 2.
-            //This eliminates null entries and '0' entries.
-            if(rootElement.Current.AutomationId.Length > 2)
-            {
-                Button elebox = new Button();
-                elebox.Content = rootElement.Current.AutomationId;
-                elebox.Name = "elebox";
-                elebox.Click += new System.Windows.RoutedEventHandler(elebox_Click);
-                //CollectorBox.Items.Add(elebox);
-                
-            }
-
-            //Conditions of which we use to limit our crawl results.
-            //We will only find controls that are enabled and are labeled as controls.
-            Condition condition1 = new PropertyCondition(AutomationElement.IsControlElementProperty, true);
-            Condition condition2 = new PropertyCondition(AutomationElement.IsEnabledProperty, true);
-            TreeWalker walker = new TreeWalker(new AndCondition(condition1, condition2));
-            AutomationElement elementNode = walker.GetFirstChild(rootElement);
-
-            //If the element node isn't null, we then crawl through the children.
-            while (elementNode != null)
-            {
-                WalkEnabledElements(elementNode);
-                elementNode = walker.GetNextSibling(elementNode);
-            }
-        }
-        
-        //Action to perform when clicking on the elebox.
-        void elebox_Click(object sender, EventArgs e)
-        {
-            Button elebox = sender as Button;
-            //Element control inside of list was clicked.
-            //Descriptor.Text = elebox.Content.ToString();
-        }
-        //Hook button has been clicked, so fetch the entered process ID.
-        private void TestClick(object sender, RoutedEventArgs e){
-            //Console.WriteLine("Fetching "+processInput.Text);
-            //var allProcess = Process.GetProcessesByName(processInput.Text);
             
-            foreach (var process in allProcess)
-            {
-                try
-                {
-                    //Automation parent root has been located, continue with execution.
-                    AutomationElement rootElement = AutomationElement.FromHandle(process.MainWindowHandle);
-                    //Kick off our recursive crawling to find all controls.
-                    try
-                    {
-                        WalkEnabledElements(rootElement);
-                    }
-                    catch (ArgumentException)
-                    {
-                        //If we run into an exception, note it in the console and end."
-                        Console.WriteLine("Stopping with search. Handled exception when trying to kick off recursive crawl.");
-                    }
-                }
-                catch (ArgumentException)
-                {
-                    Console.WriteLine("Unhandled exception when trying to find AutmationIds.");
-                }
-            }
-       }
+            HomeScreenWindow homeScreen = new HomeScreenWindow();
+            homeScreen.Show();
+            homeScreen.setMain(this);
+        }
 
-        //Actions to perform when clicking on the ActionsBox.
-        //TODO: Remove this call, or make it expand the action clicked in order to fill out details.
-        */
         private void ActionsBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ListBox dragSource = null;
@@ -190,8 +113,6 @@ namespace AIAAutomation{
             }
             return null;
         }
-        
-        #endregion
 
         //This function runs when we drop an action into our Timeline window.
         private void ActionsBox_Drop(object sender, DragEventArgs e)
@@ -277,23 +198,13 @@ namespace AIAAutomation{
         private void hookButton_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("hookButton::clicked");
-            // Prompt window and populate all processes for selection.
-            processSelection processWindow = new processSelection();
-            processWindow.Show();
-            Console.WriteLine("Does this get called?");
+        }
 
-            Thread programThread = new Thread(processWindow.Start());
-            //ProcessThread programThread = new ProcessThread(processSelection.start(5));
-            Thread.CurrentThread.Suspend();
-
-            // This continues to run even when it's waiting for input from processWindow.
-            // We can call processWindow on a separate thread and halt the current one to fix this.
-
-            if(processWindow.clickedName != null)
-            {
-                hasProgram = true;
-                TimelineBox.Visibility = System.Windows.Visibility.Visible;
-            }
+        // Below here is the logic to pass our creation-wizard constructors into our engine,
+        // and otherwise, here is how we can tie the interface into all autoEngine functionality as well.
+        private void setTarget(String name)
+        {
+            ae.setTarget(name, false);
         }
     }
 }

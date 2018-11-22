@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="AIA Automator" Height="450" Width="800"
+        Title="Automation Editor" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
         >
 
     <!--Main program window-->
-    <Grid Background="LightGray" Margin="0">
+    <Grid x:Name="EditorGrid" Background="LightGray" Margin="0" Visibility="Hidden">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="149*"/>
             <ColumnDefinition Width="643*"/>
