@@ -5,56 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Automation Editor" Height="500" Width="800"
+        WindowStartupLocation="CenterScreen"
+        >
 
     <!--Main program window-->
-    <Grid Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Margin="0">
-        <DockPanel>
+    <Grid x:Name="EditorGrid" Background="LightGray" Margin="0" Visibility="Hidden">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="643*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
 
             <!--Menu file/options/etc system-->
-            <Menu Background="White" DockPanel.Dock="Top" Height="20" VerticalAlignment="Top">
+            <Menu Background="White" DockPanel.Dock="Top" Height="18" VerticalAlignment="Top">
                 <!--File button-->
-                <MenuItem Header="_File" Background="White" >
+                <!--Options button-->
+                <!--File button-->
+                <MenuItem Header="_File" Background="White" BorderBrush="Gray">
                     <MenuItem Header="_Import Automation" Click="menu_Import"/>
                     <MenuItem Header="_Export Automation " Click="menu_Export"/>
                 </MenuItem>
                 <!--Options button-->
-                <MenuItem Header="_Options" Background="White" >
-                </MenuItem>
+                <MenuItem Header="_Options" Background="White" BorderBrush="Gray"/>
             </Menu>
         </DockPanel>
+        <Grid Background="#FFE5E5E5" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="47*"/>
+                <ColumnDefinition Width="81*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="95" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ActionsBox_MouseMove" Margin="24,35,0,0">
+                <ListBoxItem Name="ActionEvent_Click" Content="Click" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
+                <ListBoxItem Name="ActionEvent_Type" Content="Type" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
+                <ListBoxItem Name="ActionEvent_Wait" Content="Wait" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" HorizontalAlignment="Left"/>
+            </ListBox>
+            <Button x:Name="hookButton" Content="Select Program" HorizontalAlignment="Left" Margin="153,48,0,0" VerticalAlignment="Top" Width="95" Click="hookButton_Click"/>
+        </Grid>
 
-
-        <TextBox x:Name="processInput" HorizontalAlignment="Left" Height="20" Margin="10,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="87" TextChanged="textBox_TextChanged" ToolTip="Process Name"/>
-        <Button Click="TestClick" x:Name="hookButton" Content="Hook" HorizontalAlignment="Left" Margin="97,34,0,0" VerticalAlignment="Top" Width="47" Height="20" FontFamily="Verdana" FontWeight="Bold"/>
-        <ListBox x:Name="CollectorBox" HorizontalAlignment="Left" Height="160" Margin="10,54,0,0" VerticalAlignment="Top" Width="134">
-        </ListBox>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="180" Margin="160,34,0,0" VerticalAlignment="Top" Width="134">
-            <TabItem Header="Commands">
-
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="47*"/>
-                        <ColumnDefinition Width="81*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="128" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" Grid.ColumnSpan="2" PreviewMouseMove="ActionsBox_MouseMove">
-                        <ListBoxItem Name="ActionEvent_Click" Content="Click" Background="White" BorderBrush="Transparent" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
-                        <ListBoxItem Name="ActionEvent_Type" Content="Type" Background="White" BorderBrush="Transparent" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
-                        <ListBoxItem Name="ActionEvent_Wait" Content="Wait" Background="White" BorderBrush="Transparent" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
-                        
-                    </ListBox>
-                </Grid>
-
-            </TabItem>
-            
-        </TabControl>
-        <ListBox x:Name="TimelineBox" Margin="299,34,10,10" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop">
+        <ListBox x:Name="TimelineBox" Margin="0,34,10,205" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop" Visibility="Hidden" Grid.Column="1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <Frame x:Name="frame" Content="Frame" HorizontalAlignment="Left" Height="100" Margin="132,265,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
