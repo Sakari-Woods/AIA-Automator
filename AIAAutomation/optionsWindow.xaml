@@ -11,7 +11,7 @@
     <Grid>
         <Button x:Name ="NextButton" Content="Next" HorizontalAlignment="Right" Margin="0,450,20,0" VerticalAlignment="Top" Width="76" Click="NextButton_Click"/>
         <Button x:Name ="BackButton" Content="Back" HorizontalAlignment="Right" Margin="0,450,110,0" VerticalAlignment="Top" Width="76" Click="BackButton_Click"/>
-        <CheckBox Content="Advanced Reporting" HorizontalAlignment="Left" Margin="43,36,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name ="advReport" Content="Advanced Reporting" HorizontalAlignment="Left" Margin="43,36,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

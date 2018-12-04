@@ -10,10 +10,10 @@ using Condition = System.Windows.Automation.Condition;
 
 namespace AIAAutomation
 {
-    class autoEngine
+    public class autoEngine
     {
         private string targetProgram;
-        private Boolean advReporting = false;
+        public static Boolean advReporting = false;
 
         // Replace String[] with an array version of the system controls type (system.windows.diagnogistics.controls.etc.etc?).
         public String[] Controls;

@@ -80,8 +80,9 @@ namespace AIAAutomation
             {
                 Console.WriteLine("Found " + clickedName + ", proceeding");
                 optionsWindow options = new optionsWindow();
-                options.ShowDialog();
                 options.setMain(main);
+                options.ShowDialog();
+                Console.WriteLine("process is settting options main");
                 // Pass our values, and move into our options dialogue window.
                // optionsWindow.setMain(main);
                 // Record the found program and send it to our editor.

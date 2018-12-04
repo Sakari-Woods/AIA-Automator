@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
         Title="Automation Editor" Height="500" Width="800"
-        WindowStartupLocation="CenterScreen"
-        >
+        WindowStartupLocation="CenterScreen">
 
     <!--Main program window-->
     <Grid x:Name="EditorGrid" Background="LightGray" Margin="0" Visibility="Hidden">
