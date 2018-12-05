@@ -14,6 +14,7 @@ namespace AIAAutomation
     {
         private string targetProgram;
         public static Boolean advReporting = false;
+        public AutomationElement lockedProgram;
 
         // Replace String[] with an array version of the system controls type (system.windows.diagnogistics.controls.etc.etc?).
         public String[] Controls;
@@ -95,6 +96,7 @@ namespace AIAAutomation
                 {
                     // Automation parent root has been located, continue with execution.
                     AutomationElement rootElement = AutomationElement.FromHandle(process.MainWindowHandle);
+                    lockedProgram = rootElement;
                     // Kick off our recursive crawling to find all controls.
                     try
                     {
@@ -112,6 +114,16 @@ namespace AIAAutomation
                 }
             }
        }
+
+        //###########################################################################
+        // Public accessible methods below for use outisde of the autoEngine class.
+        
+        // Sets the window focus to the selected program.
+        public void aeFocusMainWindow()
+        {
+            Console.WriteLine("Focusing on Main Window.");
+            lockedProgram.SetFocus();
+        }
 
     }
 }

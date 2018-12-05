@@ -20,6 +20,7 @@ namespace AIAAutomation
     public partial class optionsWindow : Window
     {
         public Window main;
+        private System.Windows.Visibility passedVis = System.Windows.Visibility.Hidden;
 
         public optionsWindow()
         {
@@ -48,6 +49,7 @@ namespace AIAAutomation
             //Console.WriteLine("main has "+main.Content);
             // System.Windows.Controls.Grid
             // Re-enable visibility on editorGrid.
+            passedVis = System.Windows.Visibility.Visible;
             this.Close();
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -57,6 +59,10 @@ namespace AIAAutomation
             processWindow.setMain(main);
             processWindow.ShowDialog();
             this.Close();
+        }
+        public System.Windows.Visibility returnVis()
+        {
+            return passedVis;
         }
 
     }

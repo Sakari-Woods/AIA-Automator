@@ -43,6 +43,7 @@ namespace AIAAutomation{
     public partial class MainWindow  : Window{
 
         autoEngine ae = new autoEngine();
+        public static Boolean isShowing = false;
 
         public MainWindow(){
 
@@ -52,6 +53,9 @@ namespace AIAAutomation{
             HomeScreenWindow homeScreen = new HomeScreenWindow();
             homeScreen.Show();
             homeScreen.setMain(this);
+
+            // Redesign handling of visibility of editor, avoid hand-offs through multiple classes. Potential for interface with autoEngine?
+            //EditorGrid.Visibility = homeScreen.returnVis();
         }
 
         private void ActionsBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -205,6 +209,14 @@ namespace AIAAutomation{
         private void setTarget(String name)
         {
             ae.setTarget(name, false);
+        }
+
+        public void updateWindow()
+        {
+            if(isShowing == true)
+            {
+                EditorGrid.Visibility = Visibility.Visible;
+            }
         }
     }
 }

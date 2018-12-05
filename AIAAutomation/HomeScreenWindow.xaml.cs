@@ -21,6 +21,7 @@ namespace AIAAutomation
     public partial class HomeScreenWindow : Window
     {
         private Window main;
+        private System.Windows.Visibility passedVis = System.Windows.Visibility.Hidden;
 
         public HomeScreenWindow()
         {
@@ -42,12 +43,16 @@ namespace AIAAutomation
         {
             processSelection processWindow = new processSelection();
             this.Topmost = false;
-            processWindow.Show();
-            
             // We pass the main window from MainWindow into processSelection.
             processWindow.setMain(main);
+            processWindow.Show();
 
+            passedVis = processWindow.returnVis();
             this.Close();
+        }
+        public System.Windows.Visibility returnVis()
+        {
+            return passedVis;
         }
     }
 }

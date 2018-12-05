@@ -26,6 +26,7 @@ namespace AIAAutomation
         // String is made public so we can reference it from the MainWindow.
         private Window main;
         private string clickedName;
+        private System.Windows.Visibility passedVis = System.Windows.Visibility.Hidden;
 
         public processSelection()
         {
@@ -82,7 +83,9 @@ namespace AIAAutomation
                 optionsWindow options = new optionsWindow();
                 options.setMain(main);
                 options.ShowDialog();
-                Console.WriteLine("process is settting options main");
+                Console.WriteLine("process is setting options main");
+                passedVis = options.returnVis();
+
                 // Pass our values, and move into our options dialogue window.
                // optionsWindow.setMain(main);
                 // Record the found program and send it to our editor.
@@ -101,11 +104,16 @@ namespace AIAAutomation
             // Create HomeScreenWindow again because maybe the user accidentally clicked Cancel,
             // or wanted to load an existing script.
             HomeScreenWindow homeScreen = new HomeScreenWindow();
-            homeScreen.Show();
             // Sets the MainWindow to be the main of HomeScreenWindow, important because if we don't do this
             // we'll lose track of our updating value hand-off and won't be able to call our autoEngine.
             homeScreen.setMain(main);
+            homeScreen.Show();
+            
             this.Close();
+        }
+        public System.Windows.Visibility returnVis()
+        {
+            return passedVis;
         }
     }
 }
