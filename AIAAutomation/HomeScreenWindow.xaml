@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="HomeScreenWindow" Height="300" Width="500"
+        Title="HomeScreenWindow" Height="500" Width="800"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Topmost="True">

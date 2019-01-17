@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AIAAutomation"
         mc:Ignorable="d"
-        Title="Select Process" Height="500" Width="500"
+        Title="Select Process" Height="500" Width="800"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen">
     <Grid HorizontalAlignment="Left" Width="490">

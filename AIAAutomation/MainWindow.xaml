@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen">
 
     <!--Main program window-->
-    <Grid x:Name="EditorGrid" Background="LightGray" Margin="0" Visibility="Hidden">
+    <Grid x:Name="EditorGrid" Background="LightGray" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="149*"/>
             <ColumnDefinition Width="643*"/>
@@ -31,18 +31,32 @@
         </DockPanel>
         <Grid Background="#FFE5E5E5" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="47*"/>
-                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="61*"/>
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="95" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ActionsBox_MouseMove" Margin="24,35,0,0">
+            <ListBox x:Name="ActionsBox" HorizontalAlignment="Left" Height="142" VerticalAlignment="Top" Width="95" PreviewMouseLeftButtonDown="ActionsBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ActionsBox_MouseMove" Margin="13,250,0,0">
                 <ListBoxItem Name="ActionEvent_Click" Content="Click" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
                 <ListBoxItem Name="ActionEvent_Type" Content="Type" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" Width="100" HorizontalAlignment="Left"/>
                 <ListBoxItem Name="ActionEvent_Wait" Content="Wait" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" BorderBrush="Black" AllowDrop="True" Height="20" HorizontalAlignment="Left"/>
             </ListBox>
-            <Button x:Name="hookButton" Content="Select Program" HorizontalAlignment="Left" Margin="153,48,0,0" VerticalAlignment="Top" Width="95" Click="hookButton_Click"/>
+            <Button x:Name="StartAutomationButton" Content="Start Automation" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="98" Height="20"/>
+            <Button x:Name="StopAutomationButton" Content="Stop Automation" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="98" Height="20"/>
+            <ComboBox x:Name="ActionPicker" Margin="10,82,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="95" Height="22" ItemsSource="{Binding}"/>
+            <TextBlock Text="Actions" IsHitTestVisible="False" Margin="10,82,16,365" TextAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ActionPicker,Path=SelectMe}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </Grid>
 
-        <ListBox x:Name="TimelineBox" Margin="0,34,10,205" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop" Visibility="Hidden" Grid.Column="1">
+        <ListBox x:Name="TimelineBox" Margin="0,34,10,205" Background="White" BorderBrush="Black" BorderThickness="3" AllowDrop="True" Drop="ActionsBox_Drop" Grid.Column="1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"/>
